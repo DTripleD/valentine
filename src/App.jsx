@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "./App.css";
+import cute from "./images/cute.gif";
+import kiss from "./images/kiss.gif";
+import gun from "./images/gun.gif";
 
 function App() {
   const [question, setQuestion] = useState("Ти будеш моєю Валентинкою?");
   const [isNameVisible, setNameVisible] = useState(true);
-  const [imageSrc, setImageSrc] = useState("cute.gif");
+  const [imageSrc, setImageSrc] = useState(cute);
+  const [buttonsVisible, setButtonsVisible] = useState(true);
   // const [index, setIndex] = useState(0);
 
   function showMessage(response) {
@@ -15,7 +19,7 @@ function App() {
 
       noButton.style.position = "absolute";
 
-      setImageSrc("gun.gif");
+      setImageSrc(gun);
 
       const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
       const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
@@ -57,10 +61,10 @@ function App() {
 
     if (response === "Yes") {
       setNameVisible(false);
-      setQuestion("Ти моя бусінка 😘");
-      setImageSrc("kiss.gif");
+      setButtonsVisible(false);
 
-      document.getElementById("yesButton").remove();
+      setQuestion("Ти моя бусінка 😘");
+      setImageSrc(kiss);
     }
   }
 
@@ -73,28 +77,30 @@ function App() {
             className="hh"
             style={{ display: isNameVisible ? "block" : "none" }}
           >
-            Привіт, красуне!
+            Каріна Хома
           </h1>
           <p className="pp" id="question">
             {question}
           </p>
         </div>
-        <div className="buttons">
-          <button
-            className="button no"
-            id="no-button"
-            onMouseEnter={() => showMessage("No")}
-          >
-            Ні
-          </button>
-          <button
-            className="button yes"
-            onClick={() => showMessage("Yes")}
-            id="yesButton"
-          >
-            Так
-          </button>
-        </div>
+        {buttonsVisible && (
+          <div className="buttons">
+            <button
+              className="button no"
+              id="no-button"
+              onMouseEnter={() => showMessage("No")}
+            >
+              Ні
+            </button>
+            <button
+              className="button yes"
+              onClick={() => showMessage("Yes")}
+              id="yesButton"
+            >
+              Так
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
