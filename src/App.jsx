@@ -77,7 +77,7 @@ function App() {
             className="hh"
             style={{ display: isNameVisible ? "block" : "none" }}
           >
-            Привіт, красуне!
+            Каріна Хома
           </h1>
           <p className="pp" id="question">
             {question}
